@@ -18,10 +18,14 @@ export default function ContactPage() {
   });
 
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  setSuccess(false); // reset previous success
+  setError("");      // reset previous error
 
+  try {
     await api.post("/integrations/website", form);
     setSuccess(true);
 
@@ -31,7 +35,12 @@ export default function ContactPage() {
       phone: "",
       service: "",
     });
-  };
+  } catch (err) {
+    console.error(err);
+    setError("Submission failed. Please try again.");
+  }
+};
+
 
   return (
     <div className="bg-white">
@@ -98,11 +107,17 @@ export default function ContactPage() {
               Enquiry Form
             </h3>
 
-            {success && (
-              <div className="bg-green-100 text-green-700 p-3 rounded mb-4">
-                Thank you! We will contact you soon.
-              </div>
-            )}
+           {success && (
+  <div className="bg-green-100 text-green-700 p-3 rounded mb-4">
+    Thank you! We will contact you soon.
+  </div>
+)}
+
+{error && (
+  <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
+    {error}
+  </div>
+)}
 
             <form className="grid gap-4" onSubmit={handleSubmit}>
               <input
