@@ -6,11 +6,52 @@ import LeadFilters from "../leads/LeadFilters";
 import Pagination from "../../components/Pagination";   // ✔ FIXED
 
 import FilterChips from "../../components/FilterChips";
+// import { exportLeadsCSV } from "../../../../backend/controllers/leadController";
 
 
 export default function LeadsPage() {
   const dispatch = useDispatch();
   const { list, loading, total, page, limit, filters } = useSelector((s) => s.leads);
+
+  const exportCSV = () => {
+  const params = new URLSearchParams({
+    search: filters.search || "",
+    source: filters.source || "",
+    status: filters.status || ""
+  });
+
+//   const url = `${import.meta.env.VITE_API_URL}/leads/export/csv?${params}`;
+  const url = `http://localhost:5007/api/leads/export/csv?${params}`;
+  // Force browser download
+  window.location.href = url;
+};
+
+
+ const exportExcel = () => {
+  const params = new URLSearchParams({
+    search: filters.search || "",
+    source: filters.source || "",
+    status: filters.status || ""
+  });
+
+//   const url = `${import.meta.env.VITE_API_URL}/leads/export/excel?${params}`;
+    const url = `http://localhost:5007/api/leads/export/excel?${params}`;
+  window.location.href = url;
+};
+
+
+const exportPDF = () => {
+  const params = new URLSearchParams({
+    search: filters.search || "",
+    source: filters.source || "",
+    status: filters.status || ""
+  });
+
+//   const url = `${import.meta.env.VITE_API_URL}/leads/export/pdf?${params}`;
+    const url = `http://localhost:5007/api/leads/export/pdf?${params}`;
+  window.location.href = url;
+};
+
 
   useEffect(() => {
     dispatch(
@@ -35,6 +76,30 @@ export default function LeadsPage() {
           <Link to="/metrics" className="px-4 py-2 border rounded">
             Metrics
           </Link>
+
+          <button
+  onClick={exportCSV}
+  className="px-4 py-2 border bg-white rounded"
+>
+  Export CSV
+</button>
+
+<button
+  onClick={exportExcel}
+  className="px-4 py-2 border rounded bg-white"
+>
+  Export Excel
+</button>
+
+<button
+  onClick={exportPDF}
+  className="px-4 py-2 border rounded bg-white"
+>
+  Export PDF
+</button>
+
+
+
         </div>
       </div>
 

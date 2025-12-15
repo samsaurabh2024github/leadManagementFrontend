@@ -12,7 +12,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+
+
+            <Route path="/" element={<HomePage />} />
+              <Route path="/service" element={<ServicesPage  />} />
+        <Route path="/contact" element={<ContactPage />} />
+
+
+        <Route path="admin-login" element={<Login />} />
         <Route path="/dashboard" element={
           <PrivateRoute>
             <div className="min-h-screen flex bg-gray-50">
@@ -34,3 +41,6 @@ export default function App() {
   );
 }
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./userview/HomePage";import ContactPage from "./userview/ContactPage";
+import ServicesPage from "./userview/Service";
+
