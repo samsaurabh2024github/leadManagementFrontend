@@ -21,7 +21,8 @@ export default function LeadsPage() {
   });
 
 //   const url = `${import.meta.env.VITE_API_URL}/leads/export/csv?${params}`;
-  const url = `http://localhost:5007/api/leads/export/csv?${params}`;
+  // const url = `http://localhost:5007/api/leads/export/csv?${params}`;
+  const url = `https://leadmanagementbackend2.onrender.com/api/leads/export/csv?${params}`;
   // Force browser download
   window.location.href = url;
 };
@@ -35,7 +36,8 @@ export default function LeadsPage() {
   });
 
 //   const url = `${import.meta.env.VITE_API_URL}/leads/export/excel?${params}`;
-    const url = `http://localhost:5007/api/leads/export/excel?${params}`;
+    // const url = `http://localhost:5007/api/leads/export/excel?${params}`;
+    const url = `https://leadmanagementbackend2.onrender.com/api/leads/export/excel?${params}`;
   window.location.href = url;
 };
 
@@ -48,7 +50,8 @@ const exportPDF = () => {
   });
 
 //   const url = `${import.meta.env.VITE_API_URL}/leads/export/pdf?${params}`;
-    const url = `http://localhost:5007/api/leads/export/pdf?${params}`;
+    // const url = `http://localhost:5007/api/leads/export/pdf?${params}`;
+    const url = `https://leadmanagementbackend2.onrender.com/api/leads/export/pdf?${params}`;
   window.location.href = url;
 };
 
