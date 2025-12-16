@@ -20,7 +20,8 @@ export default function App() {
 
 
         <Route path="admin-login" element={<Login />} />
-        <Route path="/dashboard" element={
+
+        {/* <Route path="/dashboard" element={
           <PrivateRoute>
             <div className="min-h-screen flex bg-gray-50">
               <Sidebar />
@@ -30,11 +31,21 @@ export default function App() {
               </div>
             </div>
           </PrivateRoute>
-        }/>
-        <Route path="/create-lead" element={<PrivateRoute><div className="min-h-screen flex"><Sidebar /><div className="flex-1"><Navbar /><CreateLead /></div></div></PrivateRoute>} />
-        <Route path="/lead/:id" element={<PrivateRoute><div className="min-h-screen flex"><Sidebar /><div className="flex-1"><Navbar /><LeadDetails /></div></div></PrivateRoute>} />
-        <Route path="/edit-lead/:id" element={<PrivateRoute><div className="min-h-screen flex"><Sidebar /><div className="flex-1"><Navbar /><EditLead /></div></div></PrivateRoute>} />
-        <Route path="/metrics" element={<PrivateRoute><div className="min-h-screen flex"><Sidebar /><div className="flex-1"><Navbar /><MetricsPage /></div></div></PrivateRoute>} />
+        }/> */}
+   <Route
+          element={
+            <PrivateRoute>
+              <AdminLayout />
+            </PrivateRoute>
+          }
+        >
+          <Route path="/dashboard" element={<LeadsPage />} />
+          <Route path="/create-lead" element={<CreateLead />} />
+          <Route path="/lead/:id" element={<LeadDetails />} />
+          <Route path="/edit-lead/:id" element={<EditLead />} />
+          <Route path="/metrics" element={<MetricsPage />} />
+        </Route>
+
         <Route path="*" element={<div>404</div>} />
       </Routes>
     </BrowserRouter>
@@ -43,4 +54,5 @@ export default function App() {
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./userview/HomePage";import ContactPage from "./userview/ContactPage";
 import ServicesPage from "./userview/Service";
+import AdminLayout from "./layouts/AdminLayout";
 

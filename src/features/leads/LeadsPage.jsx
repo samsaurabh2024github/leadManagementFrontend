@@ -70,9 +70,9 @@ const exportPDF = () => {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
+     <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-center mb-4">
         <h1 className="text-2xl font-bold">Leads</h1>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Link to="/create-lead" className="bg-green-600 text-white px-4 py-2 rounded">
             + Create Lead
           </Link>
@@ -122,7 +122,8 @@ const exportPDF = () => {
               to={`/lead/${l._id}`}
               className="p-4 bg-white rounded shadow hover:bg-gray-50"
             >
-              <div className="flex justify-between">
+             <div className="flex flex-col sm:flex-row sm:justify-between gap-2">
+
                 <div>
                   <div className="font-bold">{l.name || "—"}</div>
                   <div className="text-sm">
